@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#08090B">
+<title>Bekzhan Logistic: сайт и панель</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@700;800&family=Fira+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Стартовая страница демо автоперевозок в стиле продукта «Ночной рейс»: чёрный фон, один акцент (сигнальный оранжевый).
+   Две крупные кнопки: сайт клиента и панель компании. Ссылку на страницу можно отправить прямо отсюда. */
+:root{--bg:#08090B;--card:#111316;--card2:#16191D;--line:#262A31;--text:#F2F3F5;--muted:#A7ADB8;--dim:#7A818D;--acc:#FF6B1A;--ink:#180900;
+  --font:"Fira Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--cd:"Fira Sans Condensed","Arial Narrow","Roboto Condensed",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 var(--font);-webkit-font-smoothing:antialiased;padding:0 16px}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:880px;margin:0 auto;padding-block:calc(18px + env(safe-area-inset-top,0px)) 56px;display:flex;flex-direction:column;gap:26px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand b{display:block;font-weight:800;letter-spacing:.08em;font-size:15px;line-height:1.1}
+.brand small{display:block;font-size:10px;font-weight:600;letter-spacing:.32em;color:var(--muted);text-transform:lowercase;margin-top:2px}
+.langs{display:flex;gap:4px}
+.langs button{min-width:44px;min-height:36px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:0 10px;font-size:13px;font-weight:600;color:var(--muted)}
+.langs button.on{border-color:var(--acc);color:var(--text);background:rgba(255,107,26,.14)}
+h1{margin:0;font:800 clamp(36px,9vw,68px)/.94 var(--cd);text-transform:uppercase;text-wrap:balance}
+h1 em{font-style:normal;color:var(--acc)}
+.lead{margin:10px 0 0;color:var(--muted);font-size:17.5px;max-width:34em}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.go{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);text-decoration:none;transition:border-color .2s,transform .2s;min-width:0}
+.go:hover{border-color:var(--acc);transform:translateY(-2px)}
+.go:focus-visible,.langs button:focus-visible,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.go i{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-style:normal}
+.go b{font:800 30px/1 var(--cd);text-transform:uppercase}
+.go .tx{color:var(--muted);font-size:15px;flex:1}
+.go u{align-self:flex-start;text-decoration:none;background:var(--acc);color:var(--ink);font-weight:700;font-size:15.5px;padding:12px 20px;border-radius:10px}
+.go.second u{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--acc)}
+h2{margin:0 0 12px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+ol{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ol li{counter-increment:s;position:relative;padding:14px 14px 14px 52px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--muted);font-size:14.5px}
+ol li::before{content:counter(s);position:absolute;left:16px;top:11px;font:800 28px/1 var(--cd);color:var(--acc)}
+ol li b{display:block;color:var(--text);font-size:15.5px}
+.share{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:16px}
+.share img{width:132px;height:132px;background:#fff;border-radius:10px;padding:5px;image-rendering:pixelated;display:block}
+.url{display:block;word-break:break-all;font:500 13.5px/1.4 var(--mono);color:var(--acc);margin-bottom:10px}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-weight:600;font-size:14.5px;text-decoration:none}
+.btn:hover{border-color:var(--acc)}
+.btn.g{background:var(--acc);border-color:var(--acc);color:var(--ink);font-weight:700}
+#copied{min-height:20px;margin:8px 0 0;color:#8FE0B5;font-size:14px}
+.foot{margin:0;color:var(--dim);font-size:14px}
+@media (max-width:720px){
+  .pair,ol{grid-template-columns:minmax(0,1fr)}
+  .go{padding:18px}
+  .share{grid-template-columns:minmax(0,1fr)}
+  .share img{margin:0 auto}
+  .acts .btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><svg viewBox="0 0 106 50" width="64" height="30" aria-hidden="true"><g transform="translate(2 2) scale(1.55)"><rect x="1.5" y="4.5" width="46.5" height="19.5" rx="2.2" fill="#F2F5FA" stroke="#C9D2E0" stroke-width=".6"/><rect x="1.5" y="18.8" width="46.5" height="2.2" fill="#D2A84C"/><rect x="1.5" y="24" width="64" height="2.4" rx="1" fill="#55627A"/><path d="M50.5 8.5h8.6c1 0 1.9.5 2.4 1.4l3.3 5.8c.4.7.6 1.5.6 2.3v6.500H50.500z" fill="#1E66F5"/><path d="M56 11h3c.4 0 .8.2 1 .6l2.3 4.1c.3.6-.1 1.3-.8 1.3H56z" fill="#D6E6FF"/><rect x="50.5" y="20" width="14.9" height="1.5" fill="#174EC2"/><g fill="#0B1220" stroke="#CBD5E1" stroke-width="1.4"><circle cx="8" cy="27.6" r="3.7"/><circle cx="15.5" cy="27.6" r="3.7"/><circle cx="23" cy="27.6" r="3.7"/><circle cx="45" cy="27.6" r="3.7"/><circle cx="59.5" cy="27.6" r="3.7"/></g></g></svg><div><b>BEKZHAN LOGISTIC</b><small>operelle</small></div></div>
+    <div class="langs" id="langs" role="group" aria-label="Язык" data-ta="lang"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="kk">KZ</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div>
+  </div>
+  <div>
+    <h1><span data-t="h1a">Грузоперевозки:</span> <em data-t="h1b">сайт и панель</em></h1>
+    <p class="lead" data-t="lead">Демо программы для логистической компании. Сайт принимает заявки клиентов, панель ведёт заказы и рейсы.</p>
+  </div>
+  <div class="pair">
+    <a class="go" href="p-auto-site.html"><i data-t="c1tag">Для клиента и перевозчика</i><b data-t="c1">Сайт клиента</b><span class="tx" data-t="c1t">Расчёт цены, заявка, попутный груз, кабинеты водителя и грузовладельца</span><u data-t="c1b">Открыть сайт</u></a>
+    <a class="go second" href="p-auto-dash.html"><i data-t="c2tag">Для компании</i><b data-t="c2">Панель управления</b><span class="tx" data-t="c2t">Заказы, подбор машины, карта рейсов, перевозчики, документы, финансы</span><u data-t="c2b">Открыть панель</u></a>
+  </div>
+  <section>
+    <h2 data-t="how">Как посмотреть</h2>
+    <ol>
+      <li><b data-t="s1">Оставьте заявку на сайте</b><span data-t="s1t">Города, груз, вес, имя и телефон.</span></li>
+      <li><b data-t="s2">Откройте панель</b><span data-t="s2t">Заявка уже в разделе «Заказы».</span></li>
+      <li><b data-t="s3">Переходите одной кнопкой</b><span data-t="s3t">Золотая кнопка у правого края экрана переключает сайт и панель.</span></li>
+    </ol>
+  </section>
+  <section>
+    <h2 data-t="share">Отправить ссылку</h2>
+    <div class="share">
+      <img id="qr" alt="QR-код этой страницы" data-talt="qr" width="132" height="132" hidden>
+      <div>
+        <span class="url" id="url"></span>
+        <div class="acts">
+          <button class="btn g" type="button" id="native" data-t="native" hidden>Отправить…</button>
+          <a class="btn" id="wa" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn" id="tg" target="_blank" rel="noopener">Telegram</a>
+          <button class="btn" type="button" id="copy" data-t="copy">Скопировать ссылку</button>
+        </div>
+        <p id="copied" role="status"></p>
+      </div>
+    </div>
+  </section>
+  <p class="foot" data-t="foot">Демо. Компании, заявки и ставки показаны для примера. Данные хранятся в браузере устройства.</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* язык общий с сайтом и панелью (ключ operelleLang); адрес берётся из адресной строки, поэтому страница работает на любом хостинге */
+const TXT={"ru": {"title": "Bekzhan Logistic: сайт и панель", "h1a": "Грузоперевозки:", "h1b": "сайт и панель", "lead": "Демо программы для логистической компании. Сайт принимает заявки клиентов, панель ведёт заказы и рейсы.", "c1tag": "Для клиента и перевозчика", "c1": "Сайт клиента", "c1t": "Расчёт цены, заявка, попутный груз, кабинеты водителя и грузовладельца", "c1b": "Открыть сайт", "c2tag": "Для компании", "c2": "Панель управления", "c2t": "Заказы, подбор машины, карта рейсов, перевозчики, документы, финансы", "c2b": "Открыть панель", "how": "Как посмотреть", "s1": "Оставьте заявку на сайте", "s1t": "Города, груз, вес, имя и телефон.", "s2": "Откройте панель", "s2t": "Заявка уже в разделе «Заказы».", "s3": "Переходите одной кнопкой", "s3t": "Золотая кнопка у правого края экрана переключает сайт и панель.", "share": "Отправить ссылку", "native": "Отправить…", "copy": "Скопировать ссылку", "copied": "Ссылка скопирована", "sel": "Ссылка выделена: скопируйте её", "foot": "Демо. Компании, заявки и ставки показаны для примера. Данные хранятся в браузере устройства.", "stext": "Bekzhan Logistic, демо: сайт и панель", "lang": "Язык", "qr": "QR-код этой страницы"}, "kk": {"title": "Bekzhan Logistic: сайт және панель", "h1a": "Жүк тасымалы:", "h1b": "сайт және панель", "lead": "Логистикалық компанияға арналған бағдарламаның демосы. Сайт клиенттердің өтінімдерін қабылдайды, панель тапсырыстар мен рейстерді жүргізеді.", "c1tag": "Клиент пен тасымалдаушыға", "c1": "Клиент сайты", "c1t": "Бағаны есептеу, өтінім, жолай жүк, жүргізуші мен жүк иесінің кабинеттері", "c1b": "Сайтты ашу", "c2tag": "Компанияға", "c2": "Басқару панелі", "c2t": "Тапсырыстар, көлік таңдау, рейстер картасы, тасымалдаушылар, құжаттар, қаржы", "c2b": "Панельді ашу", "how": "Қалай қарау керек", "s1": "Сайтта өтінім қалдырыңыз", "s1t": "Қалалар, жүк, салмақ, аты-жөні және телефон.", "s2": "Панельді ашыңыз", "s2t": "Өтінім «Тапсырыстар» бөлімінде тұр.", "s3": "Бір түймемен ауысыңыз", "s3t": "Экранның оң жақ шетіндегі алтын түйме сайт пен панельді ауыстырады.", "share": "Сілтемені жіберу", "native": "Жіберу…", "copy": "Сілтемені көшіру", "copied": "Сілтеме көшірілді", "sel": "Сілтеме белгіленді: оны көшіріңіз", "foot": "Демо. Компаниялар, өтінімдер мен мөлшерлемелер мысал ретінде көрсетілген. Деректер құрылғының браузерінде сақталады.", "stext": "Bekzhan Logistic, демо: сайт және панель", "lang": "Тіл", "qr": "Осы беттің QR-коды"}, "en": {"title": "Bekzhan Logistic: website and dashboard", "h1a": "Road freight:", "h1b": "website and dashboard", "lead": "A demo of software for a logistics company. The website takes client requests, the dashboard runs orders and trips.", "c1tag": "For clients and carriers", "c1": "Client website", "c1t": "Price quote, request, partial loads, driver and shipper accounts", "c1b": "Open website", "c2tag": "For the company", "c2": "Dashboard", "c2t": "Orders, truck matching, trip map, carriers, documents, finance", "c2b": "Open dashboard", "how": "How to explore", "s1": "Send a request on the website", "s1t": "Cities, cargo, weight, name and phone.", "s2": "Open the dashboard", "s2t": "The request is already under “Orders”.", "s3": "Switch with one button", "s3t": "The gold button at the right edge of the screen switches between website and dashboard.", "share": "Send the link", "native": "Share…", "copy": "Copy link", "copied": "Link copied", "sel": "Link selected: copy it", "foot": "Demo. Companies, requests and rates are examples. Data is stored in this device’s browser.", "stext": "Bekzhan Logistic demo: website and dashboard", "lang": "Language", "qr": "QR code of this page"}, "zh": {"title": "Bekzhan Logistic：网站与面板", "h1a": "公路货运：", "h1b": "网站与面板", "lead": "物流公司软件演示。网站接收客户需求，面板管理订单和行程。", "c1tag": "面向客户和承运人", "c1": "客户网站", "c1t": "报价、下单、顺路货、司机和货主个人中心", "c1b": "打开网站", "c2tag": "面向公司", "c2": "管理面板", "c2t": "订单、车辆匹配、行程地图、承运人、文件、财务", "c2b": "打开面板", "how": "如何体验", "s1": "在网站提交需求", "s1t": "城市、货物、重量、姓名和电话。", "s2": "打开面板", "s2t": "需求已出现在「订单」中。", "s3": "一键切换", "s3t": "屏幕右侧的金色按钮可在网站和面板之间切换。", "share": "发送链接", "native": "分享…", "copy": "复制链接", "copied": "链接已复制", "sel": "链接已选中，请复制", "foot": "演示。公司、需求和运价均为示例。数据保存在本设备的浏览器中。", "stext": "Bekzhan Logistic 演示：网站与面板", "lang": "语言", "qr": "本页二维码"}};
+const $=id=>document.getElementById(id);
+const BASE=new URL('.',location.href).href;
+let lang='ru';
+try{const v=localStorage.getItem('operelleLang'); if(v){let l=v; try{l=JSON.parse(v)}catch(e){} if(TXT[l]) lang=l;} else {const n=(navigator.language||'ru').slice(0,2); lang=n==='kk'?'kk':n==='zh'?'zh':n==='en'?'en':'ru';}}catch(e){}
+function paint(){
+  const t=TXT[lang];
+  document.documentElement.lang=lang; document.title=t.title;
+  document.querySelectorAll('[data-t]').forEach(e=>{e.textContent=t[e.dataset.t]});
+  document.querySelectorAll('[data-ta]').forEach(e=>{e.setAttribute('aria-label',t[e.dataset.ta])});
+  document.querySelectorAll('[data-talt]').forEach(e=>{e.alt=t[e.dataset.talt]});
+  document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+  $('url').textContent=BASE; $('copied').textContent='';
+  $('wa').href='https://wa.me/?text='+encodeURIComponent(t.stext+': '+BASE);
+  $('tg').href='https://t.me/share/url?url='+encodeURIComponent(BASE)+'&text='+encodeURIComponent(t.stext);
+}
+$('langs').addEventListener('click',e=>{const l=e.target.dataset&&e.target.dataset.lang; if(!l) return; lang=l; try{localStorage.setItem('operelleLang',JSON.stringify(l))}catch(x){} paint()});
+try{const q=qrcode(0,'M'); q.addData(BASE); q.make(); $('qr').src=q.createDataURL(6,10); $('qr').hidden=false}catch(e){}
+$('native').hidden=!navigator.share;
+$('native').addEventListener('click',()=>{navigator.share({title:'Bekzhan Logistic',text:TXT[lang].stext,url:BASE}).catch(()=>{})});
+$('copy').addEventListener('click',()=>{
+  const done=()=>{$('copied').textContent=TXT[lang].copied};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents($('url'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('copied').textContent=TXT[lang].sel};
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(BASE).then(done).catch(sel); else sel();
+});
+paint();
+</script>
+</body>
+</html>
